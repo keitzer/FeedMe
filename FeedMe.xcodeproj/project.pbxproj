@@ -15,6 +15,8 @@
 		FE32D2921C5FDFB3005C82BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE32D2911C5FDFB3005C82BE /* Assets.xcassets */; };
 		FE32D2951C5FDFB3005C82BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE32D2931C5FDFB3005C82BE /* LaunchScreen.storyboard */; };
 		FE32D2A01C5FDFB3005C82BE /* FeedMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE32D29F1C5FDFB3005C82BE /* FeedMeTests.m */; };
+		FE4F14EF1C5FE4D7004142F3 /* FMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F14EE1C5FE4D7004142F3 /* FMTableViewController.m */; };
+		FE4F15541C5FE62F004142F3 /* FMArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F15531C5FE62F004142F3 /* FMArticleTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		FE32D29B1C5FDFB3005C82BE /* FeedMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE32D29F1C5FDFB3005C82BE /* FeedMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedMeTests.m; sourceTree = "<group>"; };
 		FE32D2A11C5FDFB3005C82BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE4F14ED1C5FE4D7004142F3 /* FMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTableViewController.h; sourceTree = "<group>"; };
+		FE4F14EE1C5FE4D7004142F3 /* FMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTableViewController.m; sourceTree = "<group>"; };
+		FE4F15521C5FE62F004142F3 /* FMArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMArticleTableViewCell.h; sourceTree = "<group>"; };
+		FE4F15531C5FE62F004142F3 /* FMArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArticleTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,8 @@
 			children = (
 				FE32D2881C5FDFB3005C82BE /* AppDelegate.h */,
 				FE32D2891C5FDFB3005C82BE /* AppDelegate.m */,
+				FE32D2AA1C5FE3E7005C82BE /* Table View */,
+				FE32D2AB1C5FE3F0005C82BE /* Article View */,
 				FE32D28E1C5FDFB3005C82BE /* Main.storyboard */,
 				FE32D2911C5FDFB3005C82BE /* Assets.xcassets */,
 				FE32D2931C5FDFB3005C82BE /* LaunchScreen.storyboard */,
@@ -136,6 +144,24 @@
 				FE32D2A11C5FDFB3005C82BE /* Info.plist */,
 			);
 			path = FeedMeTests;
+			sourceTree = "<group>";
+		};
+		FE32D2AA1C5FE3E7005C82BE /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				FE4F14ED1C5FE4D7004142F3 /* FMTableViewController.h */,
+				FE4F14EE1C5FE4D7004142F3 /* FMTableViewController.m */,
+				FE4F15521C5FE62F004142F3 /* FMArticleTableViewCell.h */,
+				FE4F15531C5FE62F004142F3 /* FMArticleTableViewCell.m */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+		FE32D2AB1C5FE3F0005C82BE /* Article View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Article View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,7 +332,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE32D28A1C5FDFB3005C82BE /* AppDelegate.m in Sources */,
+				FE4F15541C5FE62F004142F3 /* FMArticleTableViewCell.m in Sources */,
 				FE32D2871C5FDFB3005C82BE /* main.m in Sources */,
+				FE4F14EF1C5FE4D7004142F3 /* FMTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
