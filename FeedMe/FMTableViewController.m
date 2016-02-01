@@ -23,6 +23,7 @@
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	
+	self.articleArray = [NSMutableArray array];
 }
 
 #pragma mark - Table View Methods

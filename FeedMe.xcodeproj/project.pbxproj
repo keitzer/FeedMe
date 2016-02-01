@@ -14,11 +14,11 @@
 		FE32D2901C5FDFB3005C82BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE32D28E1C5FDFB3005C82BE /* Main.storyboard */; };
 		FE32D2921C5FDFB3005C82BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE32D2911C5FDFB3005C82BE /* Assets.xcassets */; };
 		FE32D2951C5FDFB3005C82BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE32D2931C5FDFB3005C82BE /* LaunchScreen.storyboard */; };
-		FE32D2A01C5FDFB3005C82BE /* FeedMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE32D29F1C5FDFB3005C82BE /* FeedMeTests.m */; };
 		FE4F14EF1C5FE4D7004142F3 /* FMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F14EE1C5FE4D7004142F3 /* FMTableViewController.m */; };
 		FE4F15541C5FE62F004142F3 /* FMArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F15531C5FE62F004142F3 /* FMArticleTableViewCell.m */; };
 		FE4F15571C5FE648004142F3 /* FMArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F15561C5FE648004142F3 /* FMArticleViewController.m */; };
 		FE4F155B1C5FE660004142F3 /* FMArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F155A1C5FE660004142F3 /* FMArticle.m */; };
+		FE4F155E1C601E89004142F3 /* TableViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4F155D1C601E88004142F3 /* TableViewSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,6 @@
 		FE32D2941C5FDFB3005C82BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE32D2961C5FDFB3005C82BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE32D29B1C5FDFB3005C82BE /* FeedMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE32D29F1C5FDFB3005C82BE /* FeedMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedMeTests.m; sourceTree = "<group>"; };
 		FE32D2A11C5FDFB3005C82BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE4F14ED1C5FE4D7004142F3 /* FMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTableViewController.h; sourceTree = "<group>"; };
 		FE4F14EE1C5FE4D7004142F3 /* FMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTableViewController.m; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		FE4F15561C5FE648004142F3 /* FMArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArticleViewController.m; sourceTree = "<group>"; };
 		FE4F15591C5FE660004142F3 /* FMArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMArticle.h; sourceTree = "<group>"; };
 		FE4F155A1C5FE660004142F3 /* FMArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMArticle.m; sourceTree = "<group>"; };
+		FE4F155D1C601E88004142F3 /* TableViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +147,8 @@
 		FE32D29E1C5FDFB3005C82BE /* FeedMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				FE32D29F1C5FDFB3005C82BE /* FeedMeTests.m */,
 				FE32D2A11C5FDFB3005C82BE /* Info.plist */,
+				FE4F155D1C601E88004142F3 /* TableViewSpec.m */,
 			);
 			path = FeedMeTests;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE32D2A01C5FDFB3005C82BE /* FeedMeTests.m in Sources */,
+				FE4F155E1C601E89004142F3 /* TableViewSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
