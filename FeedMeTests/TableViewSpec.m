@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "Kiwi.h"
 #import "FMTableViewController.h"
+#import "FMArticleTableViewCell.h"
 
 @interface FMTableViewController (Spec)
 @property (nonatomic, strong) NSMutableArray *articleArray;
@@ -35,6 +36,28 @@ describe(@"Table View", ^{
 		});
 	});
 	
+	context(@"cell for row at index path", ^{
+		
+		context(@"if article exists", ^{
+			
+			beforeEach(^{
+				[tableController.articleArray insertObject:[NSObject new] atIndex:0];
+				[tableController.tableView reloadData];
+			});
+			
+			it(@"should return an Article cell", ^{
+				[[[tableController tableView:tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] should] beMemberOfClass:[FMArticleTableViewCell class]];
+			});
+		});
+		
+		
+		it(@"should return the attractive table view cell if no articles exist", ^{
+			[tableController.articleArray removeAllObjects];
+			[tableController.tableView reloadData];
+			
+			[[[tableController tableView:tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] should] beMemberOfClass:[UITableViewCell class]];
+		});
+	});
 });
 
 SPEC_END
