@@ -21,12 +21,13 @@ SPEC_BEGIN(FMTableViewSpec)
 describe(@"Table View", ^{
 	
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-	
 	__block FMTableViewController *tableController;
  
 	beforeAll(^{
+		//initialize the proper Table View from the storyboard
 		tableController = [storyboard instantiateViewControllerWithIdentifier:@"TableViewVC"];
 		
+		//...and load the view
 		[tableController view];
 	});
 	
@@ -41,6 +42,7 @@ describe(@"Table View", ^{
 		context(@"if article exists", ^{
 			
 			beforeEach(^{
+				//ensure at least 1 object exists within the array
 				[tableController.articleArray insertObject:[NSObject new] atIndex:0];
 				[tableController.tableView reloadData];
 			});
@@ -52,6 +54,7 @@ describe(@"Table View", ^{
 		
 		
 		it(@"should return the attractive table view cell if no articles exist", ^{
+			//ensure no objects exist within the array
 			[tableController.articleArray removeAllObjects];
 			[tableController.tableView reloadData];
 			

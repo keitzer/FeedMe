@@ -13,6 +13,7 @@
 
 @interface FMTableViewController ()
 
+//array to store all the articles
 @property (nonatomic, strong) NSMutableArray *articleArray;
 
 @end
@@ -23,6 +24,7 @@
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	
+	//initialize the array
 	self.articleArray = [NSMutableArray array];
 }
 
@@ -35,10 +37,13 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSInteger row = [indexPath row];
 	
+	//return the "attractive" cell if there are no articles currently stored
 	if (self.articleArray.count == 0) {
 		UITableViewCell *noArticleCell = [tableView dequeueReusableCellWithIdentifier:@"NO_ARTICLE" forIndexPath:indexPath];
 		return noArticleCell;
 	}
+	
+	//otherwise, return the Article cell
 	else {
 		FMArticleTableViewCell *articleCell = [tableView dequeueReusableCellWithIdentifier:@"ARTICLE" forIndexPath:indexPath];
 		return articleCell;
@@ -58,6 +63,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	// height minus 60 because that's relatively how tall the cell would be minus the nav bar.
 	if (self.articleArray.count == 0) {
 		return [UIScreen mainScreen].bounds.size.height - 60;
 	}
