@@ -103,6 +103,19 @@ describe(@"Table View", ^{
 			[[[tableController tableView:tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] should] beMemberOfClass:[UITableViewCell class]];
 		});
 	});
+	
+	context(@"tapping on an article cell", ^{
+		it(@"should begin transition to full article view", ^{
+			
+			if (tableController.articleArray.count == 0) {
+				[tableController.articleArray addObject:[[FMArticle alloc] initWithTitle:@"TestTitle" summary:@"TestSummary" htmlSummary:@"TestHTMLSummary" link:@"TestLink" andImage:[UIImage imageNamed:@"placeholder"]]];
+			}
+			[tableController.tableView reloadData];
+			
+			[[tableController.navigationController shouldEventually] receive:@selector(pushViewController:animated:)];
+			[tableController tableView:tableController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+		});
+	});
 });
 
 SPEC_END
