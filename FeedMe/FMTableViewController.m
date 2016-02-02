@@ -11,11 +11,13 @@
 #import "FMArticle.h"
 #import "FMArticleViewController.h"
 #import <SVProgressHUD.h>
+#import <MWFeedParser.h>
 
-@interface FMTableViewController ()
+@interface FMTableViewController () <MWFeedParserDelegate>
 
 //array to store all the articles
 @property (nonatomic, strong) NSMutableArray *articleArray;
+@property (nonatomic, strong) MWFeedParser *feedParser;
 
 @end
 
@@ -28,15 +30,32 @@
 	//initialize the array
 	self.articleArray = [NSMutableArray array];
 	
-	[self loadInitialArticles];
+	[self loadSavedArticles];
+	
+	[self initializeFeedParser];
 }
 
--(void)loadInitialArticles {
+-(void)loadSavedArticles {
 	
 	//if there aren't any articles saved, simply disable scrolling.
 	if (self.articleArray.count == 0) {
 		self.tableView.scrollEnabled = NO;
 	}
+}
+
+-(void)initializeFeedParser {
+	// Create feed parser and pass the URL of the feed
+	NSURL *feedURL = [NSURL URLWithString:@"https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss"];
+	self.feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+	
+	// Delegate must conform to `MWFeedParserDelegate`
+	self.feedParser.delegate = self;
+	
+	// Parse the feeds info (title, link) and all feed items
+	self.feedParser.feedParseType = ParseTypeItemsOnly;
+	
+	// Connection type
+	self.feedParser.connectionType = ConnectionTypeAsynchronously;
 }
 
 #pragma mark - Parsing methods
