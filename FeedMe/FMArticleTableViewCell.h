@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface FMArticleTableViewCell : UITableViewCell
+@property (nonatomic, weak) IBOutlet UILabel *articleTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *articleSummaryLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *articleImageView;
 
 @end
