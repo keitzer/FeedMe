@@ -39,6 +39,26 @@ describe(@"Article", ^{
 		});
 	});
 	
+	context(@"when archiving and unarchiving", ^{
+		
+		__block NSData *archivedData;
+		beforeEach(^{
+			archivedData = [NSKeyedArchiver archivedDataWithRootObject:article];
+		});
+		
+		it(@"should retain the same information", ^{
+			FMArticle *newArticle = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+			
+			[[article.articleTitle should] equal:newArticle.articleTitle];
+			[[article.articleHTMLSummary should] equal:newArticle.articleHTMLSummary];
+			[[article.articleLink should] equal:newArticle.articleLink];
+			[[article.articleSummary should] equal:newArticle.articleSummary];
+			NSData *img1 = UIImagePNGRepresentation(article.articleImage);
+			NSData *img2 = UIImagePNGRepresentation(newArticle.articleImage);
+			//[[img1 should] equal:img2];
+		});
+		
+	});
 	
 });
 
