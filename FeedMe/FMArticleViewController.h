@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMArticle.h"
 
 @interface FMArticleViewController : UIViewController
 
+-(id)initWithArticle:(FMArticle*)article;
 @end

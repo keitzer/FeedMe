@@ -161,9 +161,77 @@
                     <view key="view" contentMode="scaleToFill" id="JWV-9u-vpl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMJ-5w-oOX">
+                                <rect key="frame" x="46" y="252" width="228" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Lkp-iP-U2F"/>
+                                    <constraint firstAttribute="width" constant="228" id="O7y-gn-sfg"/>
+                                </constraints>
+                                <string key="text">Issue loading story.
+
+Please try again.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F1D-5a-Yha">
+                                <rect key="frame" x="8" y="28" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="duW-6o-SVS"/>
+                                    <constraint firstAttribute="width" secondItem="F1D-5a-Yha" secondAttribute="height" multiplier="2:1" id="mBW-7E-s7Z"/>
+                                    <constraint firstAttribute="width" secondItem="F1D-5a-Yha" secondAttribute="height" multiplier="1:1" id="xrG-yV-EH5"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mBW-7E-s7Z"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpF-eu-tN6">
+                                <rect key="frame" x="96" y="30" width="208" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="4LA-ze-xF0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMn-iE-7Od">
+                                <rect key="frame" x="0.0" y="116" width="320" height="452"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="9ch-zS-GVM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9ch-zS-GVM"/>
+                                    </mask>
+                                </variation>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lpF-eu-tN6" firstAttribute="leading" secondItem="F1D-5a-Yha" secondAttribute="trailing" constant="8" id="93w-aJ-6TY"/>
+                            <constraint firstItem="vMn-iE-7Od" firstAttribute="leading" secondItem="JWV-9u-vpl" secondAttribute="leading" id="DiH-Sj-PJ4"/>
+                            <constraint firstItem="lpF-eu-tN6" firstAttribute="centerY" secondItem="F1D-5a-Yha" secondAttribute="centerY" id="EC9-yN-NhS"/>
+                            <constraint firstItem="aMJ-5w-oOX" firstAttribute="centerX" secondItem="vMn-iE-7Od" secondAttribute="centerX" id="Od4-ZF-RrC"/>
+                            <constraint firstItem="vMn-iE-7Od" firstAttribute="top" secondItem="F1D-5a-Yha" secondAttribute="bottom" constant="8" id="P51-Rh-nTP"/>
+                            <constraint firstItem="F1D-5a-Yha" firstAttribute="width" secondItem="F1D-5a-Yha" secondAttribute="height" multiplier="1:1" id="PaS-eh-vMZ"/>
+                            <constraint firstItem="lpF-eu-tN6" firstAttribute="trailing" secondItem="JWV-9u-vpl" secondAttribute="trailingMargin" id="Qae-L0-0NG"/>
+                            <constraint firstAttribute="trailing" secondItem="vMn-iE-7Od" secondAttribute="trailing" id="a8F-f7-rwd"/>
+                            <constraint firstItem="iRm-vx-SnQ" firstAttribute="top" secondItem="vMn-iE-7Od" secondAttribute="bottom" id="lOS-cd-rTO"/>
+                            <constraint firstItem="F1D-5a-Yha" firstAttribute="top" secondItem="Hx6-yj-0VK" secondAttribute="bottom" constant="8" id="pZL-hE-BBw"/>
+                            <constraint firstItem="aMJ-5w-oOX" firstAttribute="centerY" secondItem="vMn-iE-7Od" secondAttribute="centerY" id="spL-uZ-sdW"/>
+                            <constraint firstItem="F1D-5a-Yha" firstAttribute="leading" secondItem="JWV-9u-vpl" secondAttribute="leading" constant="8" id="wCy-By-UL1"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="articleImageView" destination="F1D-5a-Yha" id="md5-DY-SgB"/>
+                        <outlet property="articleTitleLabel" destination="lpF-eu-tN6" id="u7i-9r-7XO"/>
+                        <outlet property="webView" destination="vMn-iE-7Od" id="dqT-ec-OaH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Dp-QL-d7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
