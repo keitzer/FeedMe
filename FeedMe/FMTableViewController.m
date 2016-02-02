@@ -40,6 +40,11 @@
 
 -(void)loadSavedArticles {
 	
+	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:@"ArticleArray"];
+	if (data) {
+		self.articleArray = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+	}
+	
 	//if there aren't any articles saved, simply disable scrolling.
 	if (self.articleArray.count == 0) {
 		self.tableView.scrollEnabled = NO;
@@ -62,7 +67,8 @@
 }
 
 -(void)saveArticleArray {
-	
+	[[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.articleArray] forKey:@"ArticleArray"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(BOOL)articleTitleExistsInArray:(NSString*)articleTitle {
