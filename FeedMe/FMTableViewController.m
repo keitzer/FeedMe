@@ -35,6 +35,8 @@
 	[self initializeFeedParser];
 }
 
+#pragma mark - Helper methods
+
 -(void)loadSavedArticles {
 	
 	//if there aren't any articles saved, simply disable scrolling.
@@ -64,6 +66,9 @@
 	//show a loading dialog while the refresh happens
 	[SVProgressHUD showWithStatus:@"Loading Articles"];
 	
+	//begin parsing feed
+	[self.feedParser parse];
+	
 	//if after 5 seconds it isn't already finished, automatically end it as it's probably a network issue.
 	[self performSelector:@selector(stopParsingFeed) withObject:nil afterDelay:5];
 }
@@ -71,10 +76,40 @@
 -(void)stopParsingFeed {
 	[SVProgressHUD dismiss];
 	
+	[self.feedParser stopParsing];
+	
 	//if there are any articles saved OR receieved from the parser, simply enable scrolling.
 	if (self.articleArray.count > 0) {
 		self.tableView.scrollEnabled = YES;
 	}
+}
+
+#pragma mark - Feed Parser Delegate
+
+// Called when data has downloaded and parsing has begun
+- (void)feedParserDidStart:(MWFeedParser *)parser {
+	NSLog(@"Parsing started.");
+}
+
+// Provides info about the feed
+- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
+	
+}
+
+// Provides info about a feed item
+- (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
+	
+}
+
+// Parsing complete or stopped at any time by `stopParsing`
+- (void)feedParserDidFinish:(MWFeedParser *)parser {
+	[self stopParsingFeed];
+}
+
+- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error // Parsing failed
+{
+	[self stopParsingFeed];
+	NSLog(@"Failed to parse. %@", error.description);
 }
 
 #pragma mark - Table View Methods
