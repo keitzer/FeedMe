@@ -11,9 +11,9 @@ Then open .xcworkspace file
 ## Pods used
 
 ```
-SVProgressHUD, for loading indicator
-Kiwi, for testing
-MWFeedParser, for RSS feed parsing
+SVProgressHUD	for loading indicator
+Kiwi			for testing
+MWFeedParser	for RSS feed parsing
 ```
 
 
