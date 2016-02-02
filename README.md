@@ -1,6 +1,7 @@
-## Install the proper dependencies before using/testing
+## How to install
 
 ```
+git clone (repo)
 pod install
 ```
 
