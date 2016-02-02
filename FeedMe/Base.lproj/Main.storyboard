@@ -80,7 +80,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="itunes_artwork" translatesAutoresizingMaskIntoConstraints="NO" id="hqQ-PQ-1zg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="356"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No articles currently loaded." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xu-1h-znE">
                                             <rect key="frame" x="35" y="80" width="250" height="101"/>
@@ -114,12 +114,15 @@
                                                     <integer key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="refreshPressed" destination="qOb-Rn-qvA" eventType="touchUpInside" id="D50-Q3-K3Y"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Q2N-P2-bSn" firstAttribute="centerX" secondItem="ZF4-pu-qrg" secondAttribute="centerX" id="7DG-6I-Qe5"/>
                                         <constraint firstAttribute="trailing" secondItem="hqQ-PQ-1zg" secondAttribute="trailing" id="IG2-QY-7K9"/>
-                                        <constraint firstAttribute="bottom" secondItem="hqQ-PQ-1zg" secondAttribute="bottom" constant="57" id="QrZ-Yq-uct"/>
+                                        <constraint firstAttribute="bottom" secondItem="hqQ-PQ-1zg" secondAttribute="bottom" id="QrZ-Yq-uct"/>
                                         <constraint firstItem="5Xu-1h-znE" firstAttribute="top" secondItem="ZF4-pu-qrg" secondAttribute="top" constant="80" id="Vsn-Ag-Dp7"/>
                                         <constraint firstItem="5Xu-1h-znE" firstAttribute="centerX" secondItem="ZF4-pu-qrg" secondAttribute="centerX" id="c5O-gZ-0Sn"/>
                                         <constraint firstItem="hqQ-PQ-1zg" firstAttribute="leading" secondItem="ZF4-pu-qrg" secondAttribute="leading" id="gQv-1A-S09"/>
@@ -135,7 +138,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="FeedMe" id="JE2-L2-LUZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="EMP-Qi-CSL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="EMP-Qi-CSL">
+                            <connections>
+                                <action selector="refreshPressed" destination="qOb-Rn-qvA" id="yye-2k-AjS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>

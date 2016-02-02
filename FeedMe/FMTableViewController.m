@@ -10,6 +10,7 @@
 #import "FMArticleTableViewCell.h"
 #import "FMArticle.h"
 #import "FMArticleViewController.h"
+#import <SVProgressHUD.h>
 
 @interface FMTableViewController ()
 
@@ -26,6 +27,31 @@
 	
 	//initialize the array
 	self.articleArray = [NSMutableArray array];
+	
+	[self loadInitialArticles];
+}
+
+-(void)loadInitialArticles {
+	
+	if (self.articleArray.count == 0) {
+		self.tableView.scrollEnabled = NO;
+	}
+}
+
+#pragma mark - Parsing methods
+
+-(IBAction)refreshPressed {
+	[SVProgressHUD showWithStatus:@"Loading Articles"];
+	
+	[self performSelector:@selector(stopParsingFeed) withObject:nil afterDelay:5];
+}
+
+-(void)stopParsingFeed {
+	[SVProgressHUD dismiss];
+	
+	if (self.articleArray.count > 0) {
+		self.tableView.scrollEnabled = YES;
+	}
 }
 
 #pragma mark - Table View Methods
@@ -40,6 +66,7 @@
 	//return the "attractive" cell if there are no articles currently stored
 	if (self.articleArray.count == 0) {
 		UITableViewCell *noArticleCell = [tableView dequeueReusableCellWithIdentifier:@"NO_ARTICLE" forIndexPath:indexPath];
+		noArticleCell.selectionStyle = UITableViewCellSelectionStyleNone;
 		return noArticleCell;
 	}
 	
