@@ -226,6 +226,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	//to ensure we're actually using an Article.
+	if (self.articleArray.count > 0) {
+		
+		//grab the article from the array
+		FMArticle *article = self.articleArray[indexPath.row];
+		
+		//initialize the VC with the article, and push it onto the stack
+		FMArticleViewController *articleVC = [[FMArticleViewController alloc] initWithArticle:article];
+		[self.navigationController pushViewController:articleVC animated:YES];
+	}
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
