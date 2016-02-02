@@ -37,7 +37,7 @@ describe(@"Table View", ^{
 	
  
 	beforeAll(^{
-		[[tableController should] receive:@selector(loadSavedArticles)];
+		[[tableController shouldEventually] receive:@selector(loadSavedArticles)];
 		[tableController view];
 	});
 	
@@ -108,6 +108,7 @@ describe(@"Table View", ^{
 		it(@"should begin transition to full article view", ^{
 			
 			if (tableController.articleArray.count == 0) {
+				//ensure that the very top item in the list is an article
 				[tableController.articleArray addObject:[[FMArticle alloc] initWithTitle:@"TestTitle" summary:@"TestSummary" htmlSummary:@"TestHTMLSummary" link:@"TestLink" andImage:[UIImage imageNamed:@"placeholder"]]];
 			}
 			[tableController.tableView reloadData];
