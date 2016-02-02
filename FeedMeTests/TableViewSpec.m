@@ -49,6 +49,7 @@ describe(@"Table View", ^{
 		context(@"if article exists", ^{
 			
 			__block FMArticle *newArticle = [[FMArticle alloc] initWithTitle:@"TestTitle" summary:@"TestSummary" htmlSummary:@"TestHTMLSummary" link:@"TestLink" andImage:[UIImage imageNamed:@"placeholder"]];
+			
 			beforeEach(^{
 				//ensure at least 1 object exists within the array
 				[tableController.articleArray insertObject:newArticle atIndex:0];

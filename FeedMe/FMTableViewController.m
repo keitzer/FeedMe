@@ -33,6 +33,7 @@
 
 -(void)loadInitialArticles {
 	
+	//if there aren't any articles saved, simply disable scrolling.
 	if (self.articleArray.count == 0) {
 		self.tableView.scrollEnabled = NO;
 	}
@@ -41,14 +42,17 @@
 #pragma mark - Parsing methods
 
 -(IBAction)refreshPressed {
+	//show a loading dialog while the refresh happens
 	[SVProgressHUD showWithStatus:@"Loading Articles"];
 	
+	//if after 5 seconds it isn't already finished, automatically end it as it's probably a network issue.
 	[self performSelector:@selector(stopParsingFeed) withObject:nil afterDelay:5];
 }
 
 -(void)stopParsingFeed {
 	[SVProgressHUD dismiss];
 	
+	//if there are any articles saved OR receieved from the parser, simply enable scrolling.
 	if (self.articleArray.count > 0) {
 		self.tableView.scrollEnabled = YES;
 	}
@@ -74,6 +78,7 @@
 	else {
 		FMArticleTableViewCell *articleCell = [tableView dequeueReusableCellWithIdentifier:@"ARTICLE" forIndexPath:indexPath];
 		
+		//make the image corners rounded
 		articleCell.articleImageView.layer.cornerRadius = 8;
 		articleCell.articleImageView.layer.masksToBounds = YES;
 		
@@ -87,10 +92,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	//if no articles, return the "refresh" cell
 	if (self.articleArray.count == 0) {
 		return 1;
 	}
 	
+	//otherwise, return the number of articles
 	return self.articleArray.count;
 }
 
