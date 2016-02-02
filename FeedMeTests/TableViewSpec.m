@@ -16,6 +16,7 @@
 @interface FMTableViewController (Spec)
 -(void)feedParserDidStart:(MWFeedParser *)parser;
 -(void)stopParsingFeed;
+-(void)loadSavedArticles;
 @property (nonatomic, strong) NSMutableArray *articleArray;
 @end
 
@@ -31,15 +32,15 @@ SPEC_BEGIN(FMTableViewSpec)
 describe(@"Table View", ^{
 	
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-	__block FMTableViewController *tableController;
+			//initialize the proper Table View from the storyboard
+	__block FMTableViewController *tableController = [storyboard instantiateViewControllerWithIdentifier:@"TableViewVC"];;
+	
  
 	beforeAll(^{
-		//initialize the proper Table View from the storyboard
-		tableController = [storyboard instantiateViewControllerWithIdentifier:@"TableViewVC"];
-		
-		//...and load the view
+		[[tableController should] receive:@selector(loadSavedArticles)];
 		[tableController view];
 	});
+	
 	
 	context(@"after view loads", ^{
 		it(@"array should be initialized", ^{
