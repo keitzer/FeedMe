@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import <SVProgressHUD.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +18,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	UIColor *customOrange = [UIColor colorWithRed:1 green:114/255.f blue:0 alpha:1];
+	
+	[SVProgressHUD setFont:[UIFont fontWithName:@"Avenir-Bold" size:20]];
+	[SVProgressHUD setRingThickness:2];
+	[SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+	[SVProgressHUD setForegroundColor:customOrange];
+	
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	[[UINavigationBar appearance] setBarTintColor:customOrange];
+	[[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Heavy" size:20]}];
+	
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	
 	return YES;
 }
 

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--FeedMe-->
         <scene sceneID="QtU-gC-u0A">
             <objects>
                 <tableViewController storyboardIdentifier="TableViewVC" id="qOb-Rn-qvA" customClass="FMTableViewController" sceneMemberID="viewController">
@@ -36,7 +36,9 @@
                             <outlet property="delegate" destination="qOb-Rn-qvA" id="w6X-ry-8la"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="JE2-L2-LUZ"/>
+                    <navigationItem key="navigationItem" title="FeedMe" id="JE2-L2-LUZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="EMP-Qi-CSL"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpg-f0-foL" userLabel="First Responder" sceneMemberID="firstResponder"/>
