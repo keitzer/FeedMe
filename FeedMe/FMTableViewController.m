@@ -73,6 +73,15 @@
 	//otherwise, return the Article cell
 	else {
 		FMArticleTableViewCell *articleCell = [tableView dequeueReusableCellWithIdentifier:@"ARTICLE" forIndexPath:indexPath];
+		
+		articleCell.articleImageView.layer.cornerRadius = 8;
+		articleCell.articleImageView.layer.masksToBounds = YES;
+		
+		FMArticle *article = self.articleArray[row];
+		articleCell.articleTitleLabel.text = article.articleTitle;
+		articleCell.articleSummaryLabel.text = article.articleSummary;
+		articleCell.articleImageView.image = article.articleImage ? article.articleImage : [UIImage imageNamed:@"placeholder"];
+		
 		return articleCell;
 	}
 }

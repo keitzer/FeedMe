@@ -10,11 +10,18 @@
 #import "Kiwi.h"
 #import "FMTableViewController.h"
 #import "FMArticleTableViewCell.h"
+#import "FMArticle.h"
 
 @interface FMTableViewController (Spec)
 @property (nonatomic, strong) NSMutableArray *articleArray;
 @end
 
+
+@implementation UIBarButtonItem (Spec)
+-(void)simulateTap {
+	[self.target performSelector:self.action withObject:nil];
+}
+@end
 
 SPEC_BEGIN(FMTableViewSpec)
 
@@ -41,14 +48,23 @@ describe(@"Table View", ^{
 		
 		context(@"if article exists", ^{
 			
+			__block FMArticle *newArticle = [[FMArticle alloc] initWithTitle:@"TestTitle" summary:@"TestSummary" htmlSummary:@"TestHTMLSummary" link:@"TestLink" andImage:[UIImage imageNamed:@"placeholder"]];
 			beforeEach(^{
 				//ensure at least 1 object exists within the array
-				[tableController.articleArray insertObject:[NSObject new] atIndex:0];
+				[tableController.articleArray insertObject:newArticle atIndex:0];
 				[tableController.tableView reloadData];
 			});
 			
 			it(@"should return an Article cell", ^{
 				[[[tableController tableView:tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] should] beMemberOfClass:[FMArticleTableViewCell class]];
+			});
+			
+			it(@"should display the proper Article information", ^{
+				FMArticleTableViewCell *cell = (FMArticleTableViewCell*)[tableController tableView:tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+				
+				[[cell.articleTitleLabel.text should] equal:newArticle.articleTitle];
+				[[cell.articleSummaryLabel.text should] equal:newArticle.articleSummary];
+				[[cell.articleImageView.image should] equal:newArticle.articleImage];
 			});
 		});
 		
