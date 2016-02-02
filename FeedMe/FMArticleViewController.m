@@ -33,4 +33,13 @@
 	return self;
 }
 
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	
+	self.articleTitleLabel.text = self.article.articleTitle;
+	self.articleImageView.image = self.article.articleImage ? self.article.articleImage : [UIImage imageNamed:@"placeholder"];
+	self.articleImageView.layer.cornerRadius = 8;
+	self.articleImageView.layer.masksToBounds = YES;
+}
+
 @end

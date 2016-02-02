@@ -39,6 +39,20 @@ describe(@"Article View", ^{
 			[[articleVC.article should] equal:fakeArticle];
 		});
 	});
+	
+	context(@"after view did load", ^{
+		beforeEach(^{
+			[articleVC view];
+		});
+		
+		it(@"should use the same image", ^{
+			[[articleVC.articleImageView.image should] equal:fakeArticle.articleImage];
+		});
+		
+		it(@"should use the same title", ^{
+			[[articleVC.articleTitleLabel.text should] equal:fakeArticle.articleTitle];
+		});
+	});
 });
 
 SPEC_END
