@@ -11,8 +11,11 @@
 #import "FMTableViewController.h"
 #import "FMArticleTableViewCell.h"
 #import "FMArticle.h"
+#import <MWFeedParser.h>
 
 @interface FMTableViewController (Spec)
+-(void)feedParserDidStart:(MWFeedParser *)parser;
+-(void)stopParsingFeed;
 @property (nonatomic, strong) NSMutableArray *articleArray;
 @end
 
@@ -41,6 +44,27 @@ describe(@"Table View", ^{
 	context(@"after view loads", ^{
 		it(@"array should be initialized", ^{
 			[[tableController.articleArray shouldNot] beNil];
+		});
+	});
+	
+	context(@"refresh button", ^{
+		
+		__block UIBarButtonItem *barButton;
+		
+		beforeEach(^{
+			barButton = tableController.navigationItem.rightBarButtonItem;
+		});
+		
+		context(@"when it is tapped", ^{
+			it(@"should begin refreshing the RSS Feed", ^{
+				[[tableController shouldEventually] receive:@selector(feedParserDidStart:)];
+				[barButton simulateTap];
+			});
+			
+			it(@"should eventually stop parsing feed", ^{
+				[[tableController shouldEventually] receive:@selector(stopParsingFeed)];
+				[barButton simulateTap];
+			});
 		});
 	});
 	
