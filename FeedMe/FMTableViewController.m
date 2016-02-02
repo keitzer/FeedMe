@@ -12,6 +12,7 @@
 #import "FMArticleViewController.h"
 #import <SVProgressHUD.h>
 #import <MWFeedParser.h>
+#import "NSString+HTML.h"
 
 @interface FMTableViewController () <MWFeedParserDelegate>
 
@@ -60,6 +61,20 @@
 	self.feedParser.connectionType = ConnectionTypeAsynchronously;
 }
 
+-(void)saveArticleArray {
+	
+}
+
+-(BOOL)articleTitleExistsInArray:(NSString*)articleTitle {
+	for (FMArticle *article in self.articleArray) {
+		if ([article.articleTitle isEqualToString:articleTitle]) {
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
 #pragma mark - Parsing methods
 
 -(IBAction)refreshPressed {
@@ -88,17 +103,65 @@
 
 // Called when data has downloaded and parsing has begun
 - (void)feedParserDidStart:(MWFeedParser *)parser {
-	NSLog(@"Parsing started.");
-}
-
-// Provides info about the feed
-- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
-	
 }
 
 // Provides info about a feed item
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
 	
+	//only add the item to the list if it isn't already there.
+	//not a perfectly fool-proof way, but it works for a vast majority of the articles
+	if (![self articleTitleExistsInArray:item.title]) {
+		NSString *summary = [item.summary stringByConvertingHTMLToPlainText];
+		
+		FMArticle *newArticle = [[FMArticle alloc] initWithTitle:item.title summary:summary htmlSummary:item.summary link:item.link andImage:nil];
+		
+		//put the newly-parsed article at the top of the list
+		[self.articleArray insertObject:newArticle atIndex:0];
+		
+		//try to get the image associated with the article
+		[self obtainImageForArticle:newArticle withItem:item];
+		
+		//update the display with the newly-inserted article
+		[self.tableView reloadData];
+	}
+}
+
+// Scan through the feed information for an image, and try to download such image.
+
+//NOTE: This method also makes the assumption that the "src=" exists, and an image will be found.
+//A lofty assumption indeed.
+//However, in the case that an image cannot be found (or loaded), the placeholder image appears in the table view.
+//Just something to know (that it's not very modular beyond this app)
+-(void)obtainImageForArticle:(FMArticle*)article withItem:(MWFeedItem*)item {
+	
+	NSString *htmlData = item.summary;
+	NSScanner* newScanner = [NSScanner scannerWithString:htmlData];
+	NSString *imageURL;
+	while (![newScanner isAtEnd]) {
+		[newScanner scanUpToString:@"src=""" intoString:NULL];
+		[newScanner scanUpToString:@""" alt=" intoString:&imageURL];
+	}
+	
+	//add the proper http:// so it can access the image properly
+	imageURL = [NSString stringWithFormat:@"%@%@", @"http://", [imageURL substringFromIndex:7]];
+	imageURL = [imageURL substringToIndex:imageURL.length-1];
+	
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		NSData *data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
+		if ( data == nil ) {
+			return;
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			UIImage *image = [UIImage imageWithData:data];
+			
+			article.articleImage = image;
+			
+			[self.tableView reloadData];
+			
+			[self saveArticleArray];
+		});
+	});
 }
 
 // Parsing complete or stopped at any time by `stopParsing`
@@ -106,8 +169,8 @@
 	[self stopParsingFeed];
 }
 
-- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error // Parsing failed
-{
+// Parsing failed
+- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
 	[self stopParsingFeed];
 	NSLog(@"Failed to parse. %@", error.description);
 }
