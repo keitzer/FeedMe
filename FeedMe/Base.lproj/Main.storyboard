@@ -72,12 +72,60 @@
                                     <outlet property="articleTitleLabel" destination="5yS-s1-EWc" id="RlL-lN-tBe"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NO_ARTICLE" rowHeight="154" id="nvQ-bR-Lc8">
-                                <rect key="frame" x="0.0" y="172" width="320" height="154"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NO_ARTICLE" rowHeight="357" id="nvQ-bR-Lc8">
+                                <rect key="frame" x="0.0" y="172" width="320" height="357"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nvQ-bR-Lc8" id="ZF4-pu-qrg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="356"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="itunes_artwork" translatesAutoresizingMaskIntoConstraints="NO" id="hqQ-PQ-1zg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No articles currently loaded." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xu-1h-znE">
+                                            <rect key="frame" x="35" y="80" width="250" height="101"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="250" id="EUy-cH-8ue"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="101" id="JYy-xx-dKA"/>
+                                                <constraint firstAttribute="height" constant="21" id="lQV-Q5-nrg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="lQV-Q5-nrg"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2N-P2-bSn">
+                                            <rect key="frame" x="60" y="231" width="201" height="62"/>
+                                            <color key="backgroundColor" red="1" green="0.61395312499999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="62" id="Fve-Ln-fPG"/>
+                                                <constraint firstAttribute="width" constant="201" id="SfC-EM-sUm"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                            <state key="normal" title="Refresh Now">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Q2N-P2-bSn" firstAttribute="centerX" secondItem="ZF4-pu-qrg" secondAttribute="centerX" id="7DG-6I-Qe5"/>
+                                        <constraint firstAttribute="trailing" secondItem="hqQ-PQ-1zg" secondAttribute="trailing" id="IG2-QY-7K9"/>
+                                        <constraint firstAttribute="bottom" secondItem="hqQ-PQ-1zg" secondAttribute="bottom" constant="57" id="QrZ-Yq-uct"/>
+                                        <constraint firstItem="5Xu-1h-znE" firstAttribute="top" secondItem="ZF4-pu-qrg" secondAttribute="top" constant="80" id="Vsn-Ag-Dp7"/>
+                                        <constraint firstItem="5Xu-1h-znE" firstAttribute="centerX" secondItem="ZF4-pu-qrg" secondAttribute="centerX" id="c5O-gZ-0Sn"/>
+                                        <constraint firstItem="hqQ-PQ-1zg" firstAttribute="leading" secondItem="ZF4-pu-qrg" secondAttribute="leading" id="gQv-1A-S09"/>
+                                        <constraint firstItem="hqQ-PQ-1zg" firstAttribute="top" secondItem="ZF4-pu-qrg" secondAttribute="top" id="kGy-MZ-ia6"/>
+                                        <constraint firstItem="Q2N-P2-bSn" firstAttribute="top" secondItem="5Xu-1h-znE" secondAttribute="bottom" constant="50" id="t68-OD-SKC"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -135,6 +183,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="itunes_artwork" width="512" height="512"/>
         <image name="placeholder" width="100" height="100"/>
     </resources>
 </document>
