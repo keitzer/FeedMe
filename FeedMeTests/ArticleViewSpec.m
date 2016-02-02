@@ -52,6 +52,10 @@ describe(@"Article View", ^{
 		it(@"should use the same title", ^{
 			[[articleVC.articleTitleLabel.text should] equal:fakeArticle.articleTitle];
 		});
+		
+		it(@"should begin to load the web view", ^{
+			[[articleVC shouldEventually] receive:@selector(webViewDidStartLoad:)];
+		});
 	});
 });
 
