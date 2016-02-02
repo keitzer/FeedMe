@@ -66,11 +66,13 @@
 	self.feedParser.connectionType = ConnectionTypeAsynchronously;
 }
 
+//use local data persistence for storing the Articles' information
 -(void)saveArticleArray {
 	[[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.articleArray] forKey:@"ArticleArray"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//not a perfectly fool-proof way, but it works for a vast majority of the articles
 -(BOOL)articleTitleExistsInArray:(NSString*)articleTitle {
 	for (FMArticle *article in self.articleArray) {
 		if ([article.articleTitle isEqualToString:articleTitle]) {
@@ -78,6 +80,7 @@
 		}
 	}
 	
+	//if it's not found, return NO
 	return NO;
 }
 
@@ -115,7 +118,6 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
 	
 	//only add the item to the list if it isn't already there.
-	//not a perfectly fool-proof way, but it works for a vast majority of the articles
 	if (![self articleTitleExistsInArray:item.title]) {
 		NSString *summary = [item.summary stringByConvertingHTMLToPlainText];
 		

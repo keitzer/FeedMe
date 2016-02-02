@@ -16,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *articleImageView;
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 
+//a boolean to know when to stop showing the Loading indicator
 @property (nonatomic, assign) BOOL finishedWithInitialLoading;
 
 @end
@@ -47,13 +48,18 @@
 }
 
 -(void)startLoadingWebContent {
+	
+	//attach the webView's delegate to self to receieve the callbacks
+	self.webView.delegate = self;
+	
+	//if there's a URL link attached to the Article, try to load that
 	if (self.article.articleLink) {
 		[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.article.articleLink]]];
 	}
+	//otherwise, simply show the HTML summary that was connected to the RSS feed item
 	else {
 		[self.webView loadHTMLString:self.article.articleHTMLSummary baseURL:nil];
 	}
-	self.webView.delegate = self;
 	
 	self.finishedWithInitialLoading = NO;
 }
@@ -61,17 +67,23 @@
 #pragma mark - Web View delegate methods
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
+	
+	//if it hasn't already completed one cycle of loading, show the "Loading..." indicator
 	if (!self.finishedWithInitialLoading) {
 		[SVProgressHUD showWithStatus:@"Loading..."];
 	}
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
+	
+	//once finished, dismiss the indicator
 	self.finishedWithInitialLoading = YES;
 	[SVProgressHUD dismiss];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+	
+	//if an error occured BEFORE the first loading cycle, hide the web view to reveal "Issue loading"
 	if (!self.finishedWithInitialLoading) {
 		[SVProgressHUD dismiss];
 		
