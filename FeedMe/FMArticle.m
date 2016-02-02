@@ -24,4 +24,30 @@
 	return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:self.articleHTMLSummary forKey:@"HTMLSummary"];
+	NSData *pngRep = UIImagePNGRepresentation(self.articleImage);
+	NSData *myEncodedImageData = [NSKeyedArchiver archivedDataWithRootObject:pngRep];
+	[coder encodeObject:myEncodedImageData forKey:@"Image"];
+	[coder encodeObject:self.articleSummary forKey:@"Summary"];
+	[coder encodeObject:self.articleTitle forKey:@"Title"];
+	[coder encodeObject:self.articleLink forKey:@"Link"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	
+	if (self) {
+		
+		self.articleTitle = [coder decodeObjectForKey:@"Title"];
+		self.articleSummary = [coder decodeObjectForKey:@"Summary"];
+		NSData *myEncodedImageData = [coder decodeObjectForKey:@"Image"];
+		NSData *pngRep = [NSKeyedUnarchiver unarchiveObjectWithData:myEncodedImageData];
+		self.articleImage = [UIImage imageWithData:pngRep];
+		self.articleHTMLSummary = [coder decodeObjectForKey:@"HTMLSummary"];
+		self.articleLink = [coder decodeObjectForKey:@"Link"];
+	}
+	return self;
+}
+
 @end
