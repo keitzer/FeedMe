@@ -3,7 +3,7 @@
 //  FeedMe
 //
 //  Created by Alex Ogorek on 2/1/16.
-//  Copyright © 2016 AFCodeTest. All rights reserved.
+//  Copyright © 2016 Ogorek. All rights reserved.
 //
 
 #import "FMTableViewController.h"
